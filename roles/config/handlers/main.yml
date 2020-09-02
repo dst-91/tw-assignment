@@ -1,0 +1,20 @@
+---
+# handlers file for config
+
+- name: restart httpd
+  service:
+    name: httpd
+    state: restarted
+  listen: "restart web services"
+
+- name: restart mariadb
+  service:
+    name: mariadb
+    state: restarted
+  listen: "restart db services"
+
+- name: restart firewalld
+  service:
+    name: firewalld
+    state: restarted
+  listen: "restart fw services"

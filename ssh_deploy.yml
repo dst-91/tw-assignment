@@ -1,0 +1,12 @@
+---
+- hosts: lampservers
+  gather_facts: true
+  become: true
+
+  tasks:
+
+  - name: Deploy SSH Key from local file (.pub)
+    authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

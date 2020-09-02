@@ -1,0 +1,10 @@
+---
+# vars file for packages
+
+# configure_db.yml vars for mysql config
+mysql_port: "3306"
+mysql_user: "wiki"
+mysql_user_pass: "mariadb"
+mysql_db_name: "wikidb"
+mysql_datadir: "/var/lib/mysql"
+mysql_sock: "/var/lib/mysql/mysql.sock"

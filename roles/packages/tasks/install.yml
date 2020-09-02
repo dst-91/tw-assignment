@@ -1,0 +1,20 @@
+---
+# package installation sub task
+
+# Installing Packages for RHEL 8
+- name: Installing Packages for RHEL
+  dnf:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - httpd
+    - php
+    - php-mysqlnd
+    - php-gd
+    - php-xml
+    - mariadb-server
+    - mariadb
+    - php-mbstring
+    - php-json
+    - python3-pip

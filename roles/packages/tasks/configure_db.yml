@@ -1,0 +1,39 @@
+---
+# Mariadb configuration sub task
+
+# Configuring MariaDB for RHEL
+
+# - name: forcefully flush all the handlers
+#   meta: flush_handlers
+  
+- name: create mysql db configuration file
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+    mode: '0660'
+
+- name: start mariadb service
+  service:
+    name: mariadb
+    state: started
+
+# Prerequisites for MySQL
+- name: Make sure pymysql is present
+  pip:
+    name: pymysql
+    state: present
+
+- name: Create DB
+  mysql_db: 
+    name: '{{ mysql_db_name }}'
+    state: present
+  when: mysql_db_name is defined
+
+- name: Create DB User
+  mysql_user: 
+    name: '{{ mysql_user }}'
+    password: '{{ mysql_user_pass }}'
+    priv: '*.*:ALL'
+    host: '%'
+    state: present
+

@@ -1,0 +1,24 @@
+---
+# services management sub task
+
+# Managing services of installed RHEL 8 packages
+
+- name: daemon reload
+  systemd:
+    daemon_reload: yes
+
+- name: restart the services after installation
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - httpd
+    - mariadb
+
+- name: enable the services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - httpd
+    - mariadb

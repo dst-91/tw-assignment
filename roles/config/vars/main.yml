@@ -1,0 +1,6 @@
+---
+# vars file for config
+
+mediawiki_name : "mediawiki"
+full_version: "1.34.2"
+mediawiki_tar_name: "mediawiki-{{ full_version }}"

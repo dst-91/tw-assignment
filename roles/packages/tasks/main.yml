@@ -1,0 +1,6 @@
+---
+# tasks file for installation, configuration and services mgmt of the packages
+
+- import_tasks: install.yml
+- import_tasks: configure_db.yml
+- import_tasks: service.yml

@@ -1,0 +1,39 @@
+---
+# tasks file for mediawiki
+
+- name: Change the working directory to non-privileged user
+  command: pwd
+  become: yes
+  become_user: '{{ non_priv_user }}'
+  args:
+    chdir: '{{ non_priv_user_dir }}'
+
+- name: Download MediaWiki tarball and key from sources
+  get_url:
+    url: "{{ item.url }}"
+    dest: '{{ non_priv_user_dir }}/{{ item.dest }}'
+    mode: '0660'
+  with_items:
+    - { url: '{{ mediawiki_tarball_url }}', dest: '{{ mediawiki_tarball }}'}
+    - { url: '{{ mediawiki_tarball_url_sig }}', dest: '{{ mediawiki_tarball_sig }}'}
+
+- name: verify gpg key of the tarball
+  shell: gpg --verify "{{ mediawiki_tarball_sig }}" "{{ mediawiki_tarball }}"
+  args:
+    chdir: '{{ non_priv_user_dir }}'
+  ignore_errors: yes
+
+- name: Extract the tarball 
+  become_user: root
+  unarchive:
+    src: '{{ non_priv_user_dir }}/{{ mediawiki_tarball }}'
+    dest: /var/www/
+    owner: apache
+    remote_src: yes
+
+- name: Add symlink for easy upgrades
+  file:
+    src: /var/www/{{ mediawiki_tar_name }}
+    dest: /var/www/mediawiki
+    state: link
+    owner: apache

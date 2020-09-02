@@ -1,0 +1,34 @@
+├── inventory
+├── mediawiki.yml
+├── roles
+│   ├── config
+│   │   ├── README.md
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── vars
+│   │       └── main.yml
+│   ├── mediawiki
+│   │   ├── README.md
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── vars
+│   │       └── main.yml
+│   └── packages
+│       ├── README.md
+│       ├── handlers
+│       │   └── main.yml
+│       ├── tasks
+│       │   ├── configure_db.yml
+│       │   ├── install.yml
+│       │   ├── main.yml
+│       │   └── service.yml
+│       ├── templates
+│       │   └── my.cnf.j2
+│       └── vars
+│           └── main.yml
+├── ssh_deploy.yml
+├── tree_structure

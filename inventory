@@ -1,0 +1,16 @@
+[lampservers]
+ec2-52-15-45-128.us-east-2.compute.amazonaws.com
+
+[lampservers:vars]
+ansible_ssh_private_key_file=<key_file>
+
+############################
+### Ideal setup with scaled infrastructure
+#[web]
+#web.myhost.com
+
+#[databases]
+#db.myhost.com
+
+#[app]
+#app.myhost.com
